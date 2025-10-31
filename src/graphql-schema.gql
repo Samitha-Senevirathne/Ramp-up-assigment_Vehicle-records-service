@@ -1,0 +1,48 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Vehicle {
+  vin: String!
+  serviceRecords: [ServiceRecord!]
+}
+
+type ServiceRecord {
+  id: ID!
+  vin: String!
+  description: String!
+  service_date: DateTime!
+  cost: Float
+  vehicle: Vehicle
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  allRecords: [ServiceRecord!]!
+  vinRecord(vin: String!): [ServiceRecord!]!
+}
+
+type Mutation {
+  createServiceRecord(input: CreateServiceRecordDto!): ServiceRecord!
+  updateRecord(updateRecordInput: UpdateServiceRecordDto!): ServiceRecord!
+  deleteServiceRecord(id: String!): Boolean!
+}
+
+input CreateServiceRecordDto {
+  vin: String!
+  description: String!
+  service_date: DateTime!
+  cost: Float
+}
+
+input UpdateServiceRecordDto {
+  id: String!
+  vin: String
+  description: String
+  service_date: DateTime
+  cost: Float
+}
