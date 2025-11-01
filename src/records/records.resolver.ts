@@ -43,7 +43,7 @@ export class RecordsResolver {
     return this.recordsService.delete(id);
   }
 
-  // Add this resolver for the vehicle field on ServiceRecord
+  // resolver for the vehicle field on ServiceRecord
     @ResolveField(() => Vehicle)
   vehicle(@Parent() record: ServiceRecord): { __typename: string; vin: string } {
     return { __typename: 'Vehicle', vin: record.vin };
