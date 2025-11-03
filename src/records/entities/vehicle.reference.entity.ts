@@ -12,5 +12,5 @@ export class Vehicle {
   vin: string;
 
   @Field(() => [ServiceRecord], { nullable: true })
-  serviceRecords?: ServiceRecord[];
+  serviceRecords?: ServiceRecord[]; 
 }
