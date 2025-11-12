@@ -5,6 +5,7 @@ import { Vehicle } from './vehicle.reference.entity';
 @ObjectType()
 @Entity()
 export class ServiceRecord {
+  
   @Field((type) => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -26,6 +27,6 @@ export class ServiceRecord {
   cost?: number;
 
  
-  @Field(() => Vehicle, { nullable: true })
-  vehicle?: Vehicle;
+  // @Field(() => Vehicle, { nullable: true })
+  // vehicle?: Vehicle;
 }

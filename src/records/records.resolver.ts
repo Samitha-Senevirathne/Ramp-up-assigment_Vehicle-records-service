@@ -4,10 +4,12 @@ import { CreateServiceRecordDto } from './dto/create-record.input';
 import { UpdateServiceRecordDto } from './dto/update-record.input';
 import { ServiceRecord } from './entities/record.entity';
 import { Vehicle } from './entities/vehicle.reference.entity';
+import { Logger } from '@nestjs/common';
 
 
 @Resolver(() => ServiceRecord)
 export class RecordsResolver {
+   private readonly logger = new Logger(RecordsResolver.name);
   constructor(private readonly recordsService: RecordsService) {}
 
   // Create
@@ -18,14 +20,24 @@ export class RecordsResolver {
   }
 
   // Find all
-  @Query(() => [ServiceRecord], { name: 'allRecords' })
-  findAll(): Promise<ServiceRecord[]> {
+  // @Query(() => [ServiceRecord], { name: 'allRecords' })
+  // findAll(): Promise<ServiceRecord[]> {
+  //   return this.recordsService.findAll();
+  // }
+
+
+ @Query(() => [ServiceRecord], { name: 'allServiceRecords' })
+  async findAll(): Promise<ServiceRecord[]> {
+    this.logger.log('Received request to fetch all service records');
     return this.recordsService.findAll();
   }
 
+
+  
   // Find by VIN
   @Query(() => [ServiceRecord], { name: 'vinRecord' })
   findByVIN(@Args('vin') vin: string): Promise<ServiceRecord[]> {
+    this.logger.log('Recieved request to fetch by VIN')
     return this.recordsService.findByVIN(vin);
   }
 
@@ -34,6 +46,7 @@ export class RecordsResolver {
   updateRecord(
     @Args('updateRecordInput') updateRecord: UpdateServiceRecordDto,
   ): Promise<ServiceRecord> {
+    this.logger.log('Recieved request for Update')
     return this.recordsService.update(updateRecord);
   }
 
@@ -47,6 +60,6 @@ export class RecordsResolver {
     @ResolveField(() => Vehicle)
   vehicle(@Parent() record: ServiceRecord): { __typename: string; vin: string } {
     return { __typename: 'Vehicle', vin: record.vin };
-  }
-
 }
+}
+

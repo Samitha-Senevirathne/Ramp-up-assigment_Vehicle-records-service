@@ -2,18 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Vehicle {
-  vin: String!
-  serviceRecords: [ServiceRecord!]
-}
-
 type ServiceRecord {
   id: ID!
   vin: String!
   description: String!
   service_date: DateTime!
   cost: Float
-  vehicle: Vehicle
+  vehicle: Vehicle!
 }
 
 """
@@ -21,8 +16,13 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Vehicle {
+  vin: String!
+  serviceRecords: [ServiceRecord!]
+}
+
 type Query {
-  allRecords: [ServiceRecord!]!
+  allServiceRecords: [ServiceRecord!]!
   vinRecord(vin: String!): [ServiceRecord!]!
 }
 
