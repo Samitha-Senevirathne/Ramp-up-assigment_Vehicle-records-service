@@ -16,6 +16,7 @@ export class RecordsResolver {
   @Mutation(() => ServiceRecord)
   async createServiceRecord(
     @Args('input') input: CreateServiceRecordDto,): Promise<ServiceRecord> {
+      this.logger.log('vehicle record added ');
     return this.recordsService.create(input);
   }
 

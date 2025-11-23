@@ -2,7 +2,7 @@ import { Directive, Field, ObjectType } from '@nestjs/graphql';
 import { ServiceRecord } from './record.entity';
 
 @ObjectType()
-@Directive('@extends') //extends Vehicle entity from Vehicle service
+@Directive('@extends') //extends Vehicle type from Vehicle service
 @Directive('@key(fields: "vin")')
 export class Vehicle {
   @Field()

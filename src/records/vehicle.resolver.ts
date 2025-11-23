@@ -20,7 +20,7 @@ export class VehicleResolver {
         this.logger.warn(`No service records found for VIN: ${vehicle.vin}`);
       } else {
         this.logger.log(
-          `Successfully fetched ${records.length} service record(s) for VIN: ${vehicle.vin}`,
+          `Successfully fetched ${records.length} service records for VIN: ${vehicle.vin}`,
         );
       }
 

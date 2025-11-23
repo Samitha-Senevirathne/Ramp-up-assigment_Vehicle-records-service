@@ -21,15 +21,6 @@ export class RecordsService {
     return await this.serviceRecordRepo.save(newRecord);
   }
 
-  // // Find all services sorted by service date
-  // async findAll(): Promise<ServiceRecord[]> {
-    
-  //   return await this.serviceRecordRepo.find({
-  //     order: { service_date: 'ASC' },
-  //   });
-  // }
-
-
 
   async findAll(): Promise<ServiceRecord[]> {
     try {
@@ -51,18 +42,6 @@ export class RecordsService {
       throw new InternalServerErrorException('Failed to fetch service records.');
     }
   }
-
-
-
-
-  //Find service by VIN
-  // async findByVIN(vin: string): Promise<ServiceRecord[]> {
-  //   return await this.serviceRecordRepo.find({
-  //     where: { vin },
-  //     order: { service_date: 'ASC' },
-  //   });
-  // }
-
 
 
   async findByVIN(vin: string): Promise<ServiceRecord[]> {
@@ -89,19 +68,6 @@ export class RecordsService {
     }
 
   }
-
-  // Update the vehicle record
-  // async update(updateRecord: UpdateServiceRecordDto): Promise<ServiceRecord> {
-  //   const existingRecord = await this.serviceRecordRepo.findOneBy({ id: updateRecord.id });
-
-  //   if (!existingRecord) {
-  //     throw new NotFoundException(`service record with ID ${updateRecord.id} not found`);
-  //   }
-
-  //   const updated = Object.assign(existingRecord, updateRecord);
-  //   return await this.serviceRecordRepo.save(updated);
-  // }
-
 
 // Update service record
 async update(updateRecord: UpdateServiceRecordDto): Promise<ServiceRecord> {
